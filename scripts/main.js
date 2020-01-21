@@ -59,6 +59,8 @@ function instructions() {
 
 //Jugar con esto
 // TODO: Falta imprimir los personajes van a ser 2 // Empieza con esto
+// Issue: No se puede interactuar con los dos personajes al mismo tiempo
+// Issue: El personaje 2 al parecer esta en un canvas mas abajo :V
 // Falta imprimir el laberinto LVL1
 // Checar Colisiones y que respete la forma del laberinto
 function update() {

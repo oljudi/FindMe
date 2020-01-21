@@ -3,7 +3,7 @@ const sprites = {
     p2: '../images/sprites/character2.png'
 }
 
-class Character {
+class Character { // Cambia esta clase para que sea la misma y solo se pase de mas el parametro de posicion
     constructor(c){
         this.type = c
         this.x = 25
