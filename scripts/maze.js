@@ -25,8 +25,9 @@ class Maze {
             for(let x=0; x < nivel[y].length; x++){
                 if(nivel[y][x] === 1){
                     this.drawBlock(a,b)
-                    paredes.push(new Wall(a,b))
-                    
+                    if(paredesAf.map(e => e.x).indexOf(a) === -1 || paredesAf.map(e => e.y).indexOf(b) === -1){
+                        paredesAf.push(new Wall(a,b))
+                    }
                 }
                 if(nivel[y][x] === 0) this.drawHall(a,b)
                 a += 40

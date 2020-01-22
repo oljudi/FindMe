@@ -10,13 +10,13 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
         this.x = x
         this.y = y
 
-        this.width = 15
-        this.height = 32
+        this.width = 30
+        this.height = 40
 
         this.sx1 = 123
         this.sy1 = 203
-        this.sWidth1 = 17
-        this.sHeight1 = 35
+        this.sWidth1 = 20
+        this.sHeight1 = 42
 
         this.sx2 = 123
         this.sy2 = 1038
@@ -35,12 +35,12 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
                 this.imgPlayer1,
                 this.sx1,
                 this.sy1,
-                this.sWidth1,
-                this.sHeight1,
+                20,
+                40,
                 this.x,
                 this.y,
-                this.width,
-                this.height
+                40,
+                40
             )
         } else if(this.type === 2){
             ctx.drawImage(

@@ -5,14 +5,13 @@ const ctx = canvas.getContext('2d')
 let interval
 let frames = 0
 
-const paredes = []
-
+const paredesAf = []
 // niveles
 
 const nivel0 = [ // 16X28
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -104,11 +103,10 @@ function drawMaze(){
 }
 
 function checkWall(){
-    paredes.forEach(pared => {
-        // console.log(pared)
-        // if(player1.dontGoOverTheWall(pared)){
-        //     console.log('tocando')
-        // }
+    paredesAf.forEach(pared => {
+        if(player1.dontGoOverTheWall(pared)){
+            console.log('tocando')
+        }
     })
 }
 
@@ -155,6 +153,22 @@ document.addEventListener('keydown', ({ keyCode }) => {
             return player2.goDown(2)
     }
   })
+
+//   paredes.push(new Wall(0,0))
+// let paredesDf = paredesAf => {
+//     return paredesAf.filter((item, index) => {
+//         return paredesAf.indexOf(item) >= index
+//     })
+// }
+
+    // let paredesDf = function (paredesAf) {
+    // 	return paredesAf.filter(function(item, index){
+    // 		return paredesAf.indexOf(item) >= index;
+    // 	});
+    // };
+
+  console.log(paredesAf);
+  
 
 //Ya funciona
 window.onload = () => {
