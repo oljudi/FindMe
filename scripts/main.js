@@ -10,26 +10,7 @@ let keys = []
 
 const paredesAf = []
 const players = []
-// niveles
 
-const nivel1 = [ // 16X28
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,1,0,1],
-    [1,1,1,0,1,1,0,1,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,1,0,1,1,0,1,1,0,0,1,1,0,1,0,1,1,0,1,0,0,1,0,1],
-    [1,0,1,0,1,1,0,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1],
-    [1,0,0,1,1,0,0,1,1,1,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,0,0,0,1],
-    [1,0,1,1,0,1,0,1,1,0,1,0,0,0,0,0,1,0,1,0,1,0,1,0,0,0,1,1,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,0,1,0,1,1,1,1,0,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,0,0,0,1],
-    [1,1,1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,1,0,1],
-    [1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,1,1,1,0,1,0,0,1,0,1],
-    [1,0,0,0,1,1,1,1,0,1,0,1,1,0,1,1,0,1,1,0,1,1,1,0,0,0,0,0,0,1],
-    [1,0,0,1,1,0,0,1,0,1,0,1,1,0,1,1,0,1,1,0,1,1,1,1,1,0,0,1,1,1],
-    [0,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-]
 
 // clases a llamar
 const welcome = new Lobby()
@@ -103,15 +84,12 @@ function checkWinner(){
     players.forEach(player => {
         var direction = player1.collisionCheckPlayer(player);
         if (direction == "left" || direction == "right") {
-            console.log('choque de lado');
             maze.drawWin()
             clearInterval(interval)
         } else if (direction == "bottom") {
-            console.log('choque por abajo');
             maze.drawWin()
             clearInterval(interval)
         } else if (direction == "top") {
-            console.log('choque por abajo');
             maze.drawWin()
             clearInterval(interval)
         }
@@ -135,6 +113,8 @@ function checkKeys(){
     if(keys[83]) player2.goDown()
     if(keys[68]) player2.goRight()
     if(keys[65]) player2.goLeft()
+
+    if(keys[82]) location.reload()
 }
 
 // TODO: Mejorar las animaciones de los Sprites

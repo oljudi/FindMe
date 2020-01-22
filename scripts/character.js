@@ -10,6 +10,10 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
         this.x = x
         this.y = y
 
+        this.xC = x+20
+        this.yC = y+10
+        this.radio = 40
+
         this.width = 40
         this.height = 40
 
@@ -40,6 +44,10 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
                 this.width,
                 this.height
             )
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(255,255,255,0.2)';
+            ctx.arc(this.x+15,this.y+15,this.radio,0,2*Math.PI);
+            ctx.fill();
         } else if(this.type === 2){
             ctx.drawImage(
                 this.imgPlayer2,
@@ -52,6 +60,10 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
                 this.width,
                 this.height
             )
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(255,255,255,0.2)';
+            ctx.arc(this.x+15,this.y+15,this.radio,0,2*Math.PI);
+            ctx.fill();
         }
     }
     goRight() {

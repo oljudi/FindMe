@@ -25,7 +25,7 @@ class Maze {
         this.imgLooser.src = blocks.looser
     }
     drawBlackout(){
-        ctx.fillStyle = 'rgba(0,0,0,0.85)';
+        ctx.fillStyle = 'rgba(0,0,0,0.9)';
         ctx.fillRect(
             0,
             0,
@@ -84,7 +84,7 @@ class Maze {
     }
     drawLooser(){
         ctx.drawImage(
-            this.imgLooser,
+            this.imgLooser, 
             300,
             200
         )
