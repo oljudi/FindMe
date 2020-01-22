@@ -5,11 +5,33 @@ const ctx = canvas.getContext('2d')
 let interval
 let frames = 0
 
+const paredes = []
+
 // niveles
+
+const nivel0 = [ // 16X28
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+]
+
 const nivel1 = [ // 16X28
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,1],
-    [1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,1,0,1],
+    [0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,1,0,1],
     [1,1,1,0,1,1,0,1,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,1,0,1,1,0,1,1,0,0,1,1,0,1,0,1,1,0,1,0,0,1,0,1],
     [1,0,1,0,1,1,0,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1],
@@ -25,14 +47,12 @@ const nivel1 = [ // 16X28
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 
-
-
 // clases a llamar
 const welcome = new Lobby()
 const inst = new Instructions()
-const player1 = new Character(1, 10, 35)
-const player2 = new Character(2, 10, 550)
-const maze = new Maze(1)
+const player1 = new Character(1, 10, 62)
+const player2 = new Character(2, 10, 555)
+const maze = new Maze()
 
 
 // Ya funciona
@@ -79,18 +99,31 @@ function instructions() {
     }
 }
 
+function drawMaze(){
+    maze.drawNivel(nivel0)
+}
+
+function checkWall(){
+    paredes.forEach(pared => {
+        // console.log(pared)
+        // if(player1.dontGoOverTheWall(pared)){
+        //     console.log('tocando')
+        // }
+    })
+}
+
 //Jugar con esto
-// TODO: Falta imprimir los personajes van a ser 2 // Empieza con esto
+// TODO: Falta imprimir los personajes van a ser 2 // Impresos con sprites
 // Issue: No se puede interactuar con los dos personajes al mismo tiempo
-// Issue: El personaje 2 al parecer esta en un canvas mas abajo :V
-// Falta imprimir el laberinto LVL1
 // Checar Colisiones y que respete la forma del laberinto
+
 function update() {
     frames++
     ctx.clearRect(0,0,canvas.width,canvas.height)
-    maze.drawNivel(nivel1)
+    drawMaze()
     player1.draw()
     player2.draw()
+    checkWall()
 }
 
 

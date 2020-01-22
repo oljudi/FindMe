@@ -10,8 +10,8 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
         this.x = x
         this.y = y
 
-        this.width = 24
-        this.height = 52
+        this.width = 15
+        this.height = 32
 
         this.sx1 = 123
         this.sy1 = 203
@@ -83,5 +83,13 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
           }
           if(this.sx2 >= 170) this.sx2 = 123 
           this.sx2 += 40
+      }
+      dontGoOverTheWall(pared){
+        return(
+          this.x < pared.x + pared.width &&
+          this.x + this.width > pared.x &&
+          this.y < pared.y + pared.height &&
+          this.y + this.height > pared.y
+        )
       }
 }
