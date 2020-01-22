@@ -15,13 +15,11 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
 
         this.sx1 = 123
         this.sy1 = 203
-        this.sWidth1 = 20
-        this.sHeight1 = 30
 
-        this.sx2 = 123
         this.sy2 = 1038
-        this.sWidth2 = 20
-        this.sHeight2 = 30
+
+        this.sWidth = 20
+        this.sHeight = 30
 
         this.imgPlayer1 = new Image()
         this.imgPlayer1.src = sprites.marioGlobal
@@ -35,8 +33,8 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
                 this.imgPlayer1,
                 this.sx1,
                 this.sy1,
-                20,
-                30,
+                this.sWidth,
+                this.sHeight,
                 this.x,
                 this.y,
                 this.width,
@@ -45,10 +43,10 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
         } else if(this.type === 2){
             ctx.drawImage(
                 this.imgPlayer2,
-                this.sx2,
+                this.sx1,
                 this.sy2,
-                this.sWidth2,
-                this.sHeight2,
+                this.sWidth,
+                this.sHeight,
                 this.x,
                 this.y,
                 this.width,
@@ -56,33 +54,29 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
             )
         }
     }
-    goRight(player) {
+    goRight() {
         if (this.x > canvas.width - 60) return // no te salgas a la derecha
-        this.x += 10
-        this.move(player)
+        this.x += 5
+        this.move()
       }
-      goLeft(player) {
+      goLeft() {
         if (this.x < 30) return // no te salgas a la izquierda
-        this.x -= 10
-        this.move(player)
+        this.x -= 5
+        this.move()
       }
-      goUp(player) {
+      goUp() {
         if (this.y < 30) return // no te salgas arriba
-        this.y -= 10
-        this.move(player)
+        this.y -= 5
+        this.move()
       } 
-      goDown(player) {
+      goDown() {
         if (this.y > canvas.height - 85) return // no te salgas a la derecha
-        this.y += 10
-        this.move(player)
+        this.y += 5
+        this.move()
       }
-      move(player){
-          if(player === 1){
-            if(this.sx1 >= 170) this.sx1 = 123 
-            this.sx1 += 40
-          }
-          if(this.sx2 >= 170) this.sx2 = 123 
-          this.sx2 += 40
+      move(){
+        if(this.sx1 >= 170) this.sx1 = 123 
+        this.sx1 += 40
       }
       dontGoOverTheWall(pared){
         return(

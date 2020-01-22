@@ -5,32 +5,15 @@ const ctx = canvas.getContext('2d')
 let interval
 let frames = 0
 
+let keys = []
+
 const paredesAf = []
 // niveles
-
-const nivel0 = [ // 16X28
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-]
 
 const nivel1 = [ // 16X28
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,1,0,0,0,0,0,1],
-    [0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,1,0,1],
+    [1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1,0,0,0,0,0,1,1,1,0,1],
     [1,1,1,0,1,1,0,1,0,0,0,0,0,1,0,0,1,1,0,1,0,1,1,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,1,0,1,1,0,1,1,0,0,1,1,0,1,0,1,1,0,1,0,0,1,0,1],
     [1,0,1,0,1,1,0,0,0,1,1,0,1,1,1,0,0,0,0,0,0,0,1,0,1,1,1,1,0,1],
@@ -116,9 +99,20 @@ function checkWall(){
       });
 }
 
+function checkKeys(){
+    if(keys[38]) player1.goUp()
+    if(keys[40]) player1.goDown()
+    if(keys[39]) player1.goRight()
+    if(keys[37]) player1.goLeft()
+
+    if(keys[87]) player2.goUp()
+    if(keys[83]) player2.goDown()
+    if(keys[68]) player2.goRight()
+    if(keys[65]) player2.goLeft()
+}
+
 //Jugar con esto
 // TODO: Mejorar las animaciones de los Sprites
-// Issue: No se puede interactuar con los dos personajes al mismo tiempo
 // Checar Colision entre los jugadores (WIN CASE) poner un timer (LOSE CASE)
 
 function update() {
@@ -127,42 +121,20 @@ function update() {
     drawMaze()
     player1.draw()
     player2.draw()
+    checkKeys()
     checkWall() // hacer solido el laberinto
 }
 
 
 // Recibe los parametros del teclado para hacer el movimiento del personaje
 document.addEventListener('keydown', ({ keyCode }) => {
-    switch (keyCode) {
-        case 39:
-            return player1.goRight(1)
-    
-        case 38:
-            return player1.goUp(1)
-    
-        case 37:
-            return player1.goLeft(1)
-    
-        case 40:
-            return player1.goDown(1)
-
-        case 68:
-            return player2.goRight(2)
-    
-        case 87:
-            return player2.goUp(2)
-    
-        case 65:
-            return player2.goLeft(2)
-    
-        case 83:
-            return player2.goDown(2)
-    }
-  })
-  
+    keys[keyCode] = true;
+    })
+document.addEventListener('keyup', ({ keyCode }) => {
+    keys[keyCode] = false;
+    })
 
 //Ya funciona
 window.onload = () => {
     starLobby()
 }
-

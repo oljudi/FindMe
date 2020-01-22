@@ -32,14 +32,6 @@ class Instructions {
         this.imgP1.src = intsImages.p1
         this.imgP2 = new Image()
         this.imgP2.src = intsImages.p2
-        this.imgFindA = new Image()
-        this.imgFindA.src = intsImages.finda
-        this.imgToOpen = new Image()
-        this.imgToOpen.src = intsImages.toopen
-        this.imgKey = new Image()
-        this.imgKey.src = intsImages.key
-        this.imgDoor = new Image()
-        this.imgDoor.src = intsImages.door
         this.imgFindYourTM = new Image()
         this.imgFindYourTM.src = intsImages.teamMate
         this.imgDeal = new Image()
@@ -97,34 +89,6 @@ class Instructions {
             350,
             this.imgP2.width,
             this.imgP2.height
-        )
-        ctx.drawImage( // Find A
-            this.imgFindA,
-            800,
-            90,
-            this.imgFindA.width,
-            this.imgFindA.height
-        )
-        ctx.drawImage( // Find a Key
-            this.imgKey,
-            800,
-            150,
-            100,
-            50
-        )
-        ctx.drawImage( // To Open
-            this.imgToOpen,
-            800,
-            250,
-            this.imgToOpen.width,
-            this.imgToOpen.height
-        )
-        ctx.drawImage( // a Door
-            this.imgDoor,
-            820,
-            300,
-            100,
-            100
         )
         ctx.drawImage( // Find your teamMate
             this.imgFindYourTM,
