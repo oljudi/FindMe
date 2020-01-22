@@ -9,18 +9,18 @@ const paredesAf = []
 // niveles
 
 const nivel0 = [ // 16X28
-    [1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -99,21 +99,27 @@ function instructions() {
 }
 
 function drawMaze(){
-    maze.drawNivel(nivel0)
+    maze.drawNivel(nivel1)
 }
 
 function checkWall(){
-    paredesAf.forEach(pared => {
-        if(player1.dontGoOverTheWall(pared)){
-            console.log('tocando')
-        }
-    })
+    paredesAf.forEach(platform => {
+        player1.collisionCheck(platform);
+        player2.collisionCheck(platform);    
+        // if (direction == "left" || direction == "right") {
+        //     console.log('choque de lado');
+        // } else if (direction == "bottom") {
+        //     console.log('choque por abajo');
+        // } else if (direction == "top") {
+        //     console.log('choque por abajo');
+        // }
+      });
 }
 
 //Jugar con esto
-// TODO: Falta imprimir los personajes van a ser 2 // Impresos con sprites
+// TODO: Mejorar las animaciones de los Sprites
 // Issue: No se puede interactuar con los dos personajes al mismo tiempo
-// Checar Colisiones y que respete la forma del laberinto
+// Checar Colision entre los jugadores (WIN CASE) poner un timer (LOSE CASE)
 
 function update() {
     frames++
@@ -121,7 +127,7 @@ function update() {
     drawMaze()
     player1.draw()
     player2.draw()
-    checkWall()
+    checkWall() // hacer solido el laberinto
 }
 
 
@@ -153,21 +159,6 @@ document.addEventListener('keydown', ({ keyCode }) => {
             return player2.goDown(2)
     }
   })
-
-//   paredes.push(new Wall(0,0))
-// let paredesDf = paredesAf => {
-//     return paredesAf.filter((item, index) => {
-//         return paredesAf.indexOf(item) >= index
-//     })
-// }
-
-    // let paredesDf = function (paredesAf) {
-    // 	return paredesAf.filter(function(item, index){
-    // 		return paredesAf.indexOf(item) >= index;
-    // 	});
-    // };
-
-  console.log(paredesAf);
   
 
 //Ya funciona

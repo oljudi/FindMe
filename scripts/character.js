@@ -10,18 +10,18 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
         this.x = x
         this.y = y
 
-        this.width = 30
+        this.width = 40
         this.height = 40
 
         this.sx1 = 123
         this.sy1 = 203
         this.sWidth1 = 20
-        this.sHeight1 = 42
+        this.sHeight1 = 30
 
         this.sx2 = 123
         this.sy2 = 1038
-        this.sWidth2 = 17
-        this.sHeight2 = 35
+        this.sWidth2 = 20
+        this.sHeight2 = 30
 
         this.imgPlayer1 = new Image()
         this.imgPlayer1.src = sprites.marioGlobal
@@ -36,11 +36,11 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
                 this.sx1,
                 this.sy1,
                 20,
-                40,
+                30,
                 this.x,
                 this.y,
-                40,
-                40
+                this.width,
+                this.height
             )
         } else if(this.type === 2){
             ctx.drawImage(
@@ -91,5 +91,36 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
           this.y < pared.y + pared.height &&
           this.y + this.height > pared.y
         )
+      }
+      collisionCheck(platform) {
+        var vectorX = this.x + this.width / 2 - (platform.x + platform.width / 2);
+        var vectorY = this.y + this.height / 2 - (platform.y + platform.height / 2);
+    
+        var halfWidths = this.width / 2 + platform.width / 2;
+        var halfHeights = this.height / 2 + platform.height / 2;
+    
+        var collisionDirection = null;
+    
+        if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
+          var offsetX = halfWidths - Math.abs(vectorX);
+          var offsetY = halfHeights - Math.abs(vectorY);
+          if (offsetX < offsetY) {
+            if (vectorX > 0) {
+              collisionDirection = "left";
+              this.x += offsetX;
+            } else {
+              collisionDirection = "right";
+              this.x -= offsetX;
+            }
+          } else {
+            if (vectorY > 0) {
+              collisionDirection = "top";
+              this.y += offsetY;
+            } else {
+              collisionDirection = "bottom";
+              this.y -= offsetY;
+            }
+          }
+        }
       }
 }
