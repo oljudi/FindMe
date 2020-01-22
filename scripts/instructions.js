@@ -46,6 +46,9 @@ class Instructions {
         this.imgStart.src = intsImages.start
         this.imgKeyR = new Image()
         this.imgKeyR.src = intsImages.keyR
+
+        this.audioDoor = new Audio()
+        this.audioDoor.src = '../sounds/door_open.mp3'
     }
     drawInst(){
         ctx.drawImage( // draw instructions Text

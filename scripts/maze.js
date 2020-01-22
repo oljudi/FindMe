@@ -23,6 +23,10 @@ class Maze {
         this.imgWinners.src = blocks.winn
         this.imgLooser = new Image()
         this.imgLooser.src = blocks.looser
+
+        this.audio = new Audio()
+        this.audio.src = '../sounds/marioCave.mp3'
+        this.audio.loop = true
     }
     drawBlackout(){
         ctx.fillStyle = 'rgba(0,0,0,0.9)';

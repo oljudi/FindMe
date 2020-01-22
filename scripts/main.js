@@ -35,11 +35,12 @@ function startGame(){
 // Ya Funciona
 function starLobby(){
     ctx.clearRect(0,0,canvas.width,canvas.height)
+    welcome.audio.play()
     welcome.draw()
     document.onkeydown = e => {
         switch(e.keyCode){
             case 83: // [S]tart Game
-                instructions()
+                instructions()  
                 break;
             case 67: // [C]redits
                 welcome.drawCredits()
@@ -58,6 +59,7 @@ function instructions() {
     document.onkeydown = e => {
         switch (e.keyCode) {
             case 13:
+                inst.audioDoor.play()
                 startGame()
                 break;
             case 82:
@@ -68,6 +70,7 @@ function instructions() {
 }
 
 function drawMaze(){
+    maze.audio.play()
     maze.drawNivel(nivel1)
     maze.drawBlackout()
     dialogo.draw()
@@ -95,13 +98,13 @@ function checkWinner(){
         }
     })
 }
+
 function checkLooser(){
     if(time === 0){
         maze.drawLooser()
         clearInterval(interval)
     }
 }
-
 
 function checkKeys(){
     if(keys[38]) player1.goUp()

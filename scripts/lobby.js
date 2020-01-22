@@ -35,6 +35,10 @@ class Lobby {
         this.imgReturn = new Image()
         this.imgReturn.src = creditsImages.back
 
+        this.audio = new Audio()
+        this.audio.src = '../sounds/lobby.mp3'
+        this.audio.loop = true
+
     }
     draw(){ 
         ctx.drawImage( // Imprime el fondo
