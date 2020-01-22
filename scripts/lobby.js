@@ -54,16 +54,23 @@ class Lobby {
         ctx.drawImage( // Imprime Start Button
             this.imgStrt,
             20,
-            350,
+            550,
             this.imgStrt.width,
             this.imgStrt.height
         )
         ctx.drawImage( // Imprime Credits Button
             this.imgCredits,
             20,
-            440,
+            640,
             this.imgCredits.width,
             this.imgCredits.height
+        )
+        ctx.drawImage( //draw Oljudi
+            this.imgOljudi,
+            1050,
+            650,
+            this.imgOljudi.width,
+            this.imgOljudi.height
         )        
     }
     drawCredits(){

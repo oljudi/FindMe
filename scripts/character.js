@@ -86,6 +86,7 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
           this.y + this.height > pared.y
         )
       }
+
       collisionCheck(platform) {
         var vectorX = this.x + this.width / 2 - (platform.x + platform.width / 2);
         var vectorY = this.y + this.height / 2 - (platform.y + platform.height / 2);
@@ -117,4 +118,39 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
           }
         }
       }
-}
+
+      collisionCheckPlayer(platform) {
+        var vectorX = this.x + this.width / 2 - (platform.x + platform.width / 2);
+        var vectorY = this.y + this.height / 2 - (platform.y + platform.height / 2);
+    
+        var halfWidths = this.width / 2 + platform.width / 2;
+        var halfHeights = this.height / 2 + platform.height / 2;
+    
+        var collisionDirection = null;
+    
+        if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
+          var offsetX = halfWidths - Math.abs(vectorX);
+          var offsetY = halfHeights - Math.abs(vectorY);
+          if (offsetX < offsetY) {
+            if (vectorX > 0) {
+              collisionDirection = "left";
+              this.x += offsetX;
+            } else {
+              collisionDirection = "right";
+              this.x -= offsetX;
+            }
+          } else {
+            if (vectorY > 0) {
+              collisionDirection = "top";
+              this.y += offsetY;
+            } else {
+              collisionDirection = "bottom";
+              this.y -= offsetY;
+            }
+          }
+        }
+    
+        return collisionDirection;
+      }
+    }
+    

@@ -4,10 +4,12 @@ const ctx = canvas.getContext('2d')
 // controladores del juego
 let interval
 let frames = 0
+let time = 60
 
 let keys = []
 
 const paredesAf = []
+const players = []
 // niveles
 
 const nivel1 = [ // 16X28
@@ -33,8 +35,11 @@ const nivel1 = [ // 16X28
 const welcome = new Lobby()
 const inst = new Instructions()
 const player1 = new Character(1, 10, 62)
+// players.push(player1)
 const player2 = new Character(2, 10, 555)
+players.push(player2)
 const maze = new Maze()
+const dialogo = new Tablero()
 
 
 // Ya funciona
@@ -83,21 +88,42 @@ function instructions() {
 
 function drawMaze(){
     maze.drawNivel(nivel1)
+    maze.drawBlackout()
+    dialogo.draw()
 }
 
 function checkWall(){
     paredesAf.forEach(platform => {
         player1.collisionCheck(platform);
         player2.collisionCheck(platform);    
-        // if (direction == "left" || direction == "right") {
-        //     console.log('choque de lado');
-        // } else if (direction == "bottom") {
-        //     console.log('choque por abajo');
-        // } else if (direction == "top") {
-        //     console.log('choque por abajo');
-        // }
       });
 }
+
+function checkWinner(){
+    players.forEach(player => {
+        var direction = player1.collisionCheckPlayer(player);
+        if (direction == "left" || direction == "right") {
+            console.log('choque de lado');
+            maze.drawWin()
+            clearInterval(interval)
+        } else if (direction == "bottom") {
+            console.log('choque por abajo');
+            maze.drawWin()
+            clearInterval(interval)
+        } else if (direction == "top") {
+            console.log('choque por abajo');
+            maze.drawWin()
+            clearInterval(interval)
+        }
+    })
+}
+function checkLooser(){
+    if(time === 0){
+        maze.drawLooser()
+        clearInterval(interval)
+    }
+}
+
 
 function checkKeys(){
     if(keys[38]) player1.goUp()
@@ -111,18 +137,20 @@ function checkKeys(){
     if(keys[65]) player2.goLeft()
 }
 
-//Jugar con esto
 // TODO: Mejorar las animaciones de los Sprites
 // Checar Colision entre los jugadores (WIN CASE) poner un timer (LOSE CASE)
 
 function update() {
     frames++
+    if(frames%60 === 1) time--
     ctx.clearRect(0,0,canvas.width,canvas.height)
     drawMaze()
     player1.draw()
     player2.draw()
     checkKeys()
     checkWall() // hacer solido el laberinto
+    checkWinner()
+    checkLooser()
 }
 
 

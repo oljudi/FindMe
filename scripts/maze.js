@@ -1,5 +1,7 @@
 blocks = {
     block: '../images/sprites/blocks.png',
+    winn: '../images/status/win.png',
+    looser: '../images/status/gameover.png'
 }
 
 class Maze {
@@ -17,6 +19,19 @@ class Maze {
 
         this.imgBlock = new Image()
         this.imgBlock.src = blocks.block
+        this.imgWinners = new Image()
+        this.imgWinners.src = blocks.winn
+        this.imgLooser = new Image()
+        this.imgLooser.src = blocks.looser
+    }
+    drawBlackout(){
+        ctx.fillStyle = 'rgba(0,0,0,0.85)';
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height-60
+        )
     }
     drawNivel (nivel){
         let a = 0
@@ -56,6 +71,22 @@ class Maze {
             y,
             70,
             70
+        )
+    }
+    drawWin(){
+        ctx.drawImage(
+            this.imgWinners,
+            400,
+            200,
+            300,
+            300
+        )
+    }
+    drawLooser(){
+        ctx.drawImage(
+            this.imgLooser,
+            300,
+            200
         )
     }
 }
