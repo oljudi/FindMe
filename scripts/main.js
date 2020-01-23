@@ -11,6 +11,13 @@ let keys = []
 const paredesAf = []
 const players = []
 
+// niveles
+
+let random = Math.floor(Math.random() * (3 - 1)) + 1;
+let lvl = 'nivel'+random.toString()
+console.log(lvl);
+
+
 
 // clases a llamar
 const welcome = new Lobby()
@@ -69,9 +76,8 @@ function instructions() {
     }
 }
 
-function drawMaze(){
-    maze.audio.play()
-    maze.drawNivel(nivel1)
+function drawMaze(lvl){
+    maze.drawNivel(lvl)
     maze.drawBlackout()
     dialogo.draw()
 }
@@ -127,7 +133,7 @@ function update() {
     frames++
     if(frames%60 === 1) time--
     ctx.clearRect(0,0,canvas.width,canvas.height)
-    drawMaze()
+    drawMaze(nivel2)
     player1.draw()
     player2.draw()
     checkKeys()

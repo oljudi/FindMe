@@ -14,7 +14,9 @@ intsImages = {
     win: './images/instructions/win.png',
     enter: './images/instructions/enterVector.png',
     start: './images/instructions/start.png',
-    keyR: './images/instructions/keyboard_key_r.png'
+    keyR: './images/instructions/keyboard_key_r.png',
+    timefindMe : '../images/instructions/findmetime.png',
+    time: '../images/instructions/time.png'
 }
 
 
@@ -46,6 +48,10 @@ class Instructions {
         this.imgStart.src = intsImages.start
         this.imgKeyR = new Image()
         this.imgKeyR.src = intsImages.keyR
+        this.imgFindMeTime = new Image()
+        this.imgFindMeTime.src = intsImages.timefindMe
+        this.imgTime = new Image()
+        this.imgTime.src = intsImages.time
 
         this.audioDoor = new Audio()
         this.audioDoor.src = '../sounds/door_open.mp3'
@@ -53,7 +59,7 @@ class Instructions {
     drawInst(){
         ctx.drawImage( // draw instructions Text
             this.imgInstText,
-            380,
+            0,
             20,
             this.imgInstText.width,
             this.imgInstText.height
@@ -92,6 +98,18 @@ class Instructions {
             350,
             this.imgP2.width,
             this.imgP2.height
+        )
+        ctx.drawImage(
+            this.imgFindMeTime,
+            600,
+            150,
+            this.imgFindMeTime.width,
+            this.imgFindMeTime.height
+        )
+        ctx.drawImage(
+            this.imgTime,
+            790,
+            200
         )
         ctx.drawImage( // Find your teamMate
             this.imgFindYourTM,

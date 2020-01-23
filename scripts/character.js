@@ -12,7 +12,7 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
 
         this.xC = x+20
         this.yC = y+10
-        this.radio = 40
+        this.radio = 70
 
         this.width = 40
         this.height = 40
