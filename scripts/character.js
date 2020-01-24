@@ -67,22 +67,22 @@ class Character { // Cambia esta clase para que sea la misma y solo se pase de m
         }
     }
     goRight() {
-        if (this.x > canvas.width - 60) return // no te salgas a la derecha
+        if (this.x > canvas.width - 40) return // no te salgas a la derecha
         this.x += 5
         this.move()
       }
       goLeft() {
-        if (this.x < 30) return // no te salgas a la izquierda
+        if (this.x < 10) return // no te salgas a la izquierda
         this.x -= 5
         this.move()
       }
       goUp() {
-        if (this.y < 30) return // no te salgas arriba
+        if (this.y < 5) return // no te salgas arriba
         this.y -= 5
         this.move()
       } 
       goDown() {
-        if (this.y > canvas.height - 85) return // no te salgas a la derecha
+        if (this.y > canvas.height - 100) return // no te salgas a la abajo
         this.y += 5
         this.move()
       }

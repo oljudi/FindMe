@@ -52,11 +52,21 @@ class Instructions {
         this.imgFindMeTime.src = intsImages.timefindMe
         this.imgTime = new Image()
         this.imgTime.src = intsImages.time
+        this.imgBg = new Image()
+        this.imgBg.src = '../images/background/indielab1.jpg'
+        
 
         this.audioDoor = new Audio()
         this.audioDoor.src = '../sounds/door_open.mp3'
     }
     drawInst(){
+        ctx.drawImage( // Imprime el fondo
+            this.imgBg,
+            0,
+            0,
+            this.imgBg.width,
+            this.imgBg.height
+        )
         ctx.drawImage( // draw instructions Text
             this.imgInstText,
             0,

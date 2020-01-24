@@ -14,17 +14,21 @@ const players = []
 // niveles
 
 let random = Math.floor(Math.random() * (3 - 1)) + 1;
-let lvl = 'nivel'+random.toString()
-console.log(lvl);
+let fuck = niveles[random]
 
+let randomP1x = Math.floor(Math.random() * (1160 - 0)) + 1;
+let randomP1y = Math.floor(Math.random() * (600 - 0)) + 1;
+
+let randomP2x = Math.floor(Math.random() * (1160 - 0)) + 1;
+let randomP2y = Math.floor(Math.random() * (600 - 0)) + 1;
 
 
 // clases a llamar
 const welcome = new Lobby()
 const inst = new Instructions()
-const player1 = new Character(1, 10, 62)
+const player1 = new Character(1, randomP1x, randomP1y)
 // players.push(player1)
-const player2 = new Character(2, 10, 555)
+const player2 = new Character(2, randomP2x, randomP2y)
 players.push(player2)
 const maze = new Maze()
 const dialogo = new Tablero()
@@ -76,8 +80,8 @@ function instructions() {
     }
 }
 
-function drawMaze(lvl){
-    maze.drawNivel(lvl)
+function drawMaze(){
+    maze.drawNivel(fuck)
     maze.drawBlackout()
     dialogo.draw()
 }
@@ -155,3 +159,12 @@ document.addEventListener('keyup', ({ keyCode }) => {
 window.onload = () => {
     starLobby()
 }
+
+// Boton para hacer fullscreen
+document.querySelector('button').onclick = () => {
+    if (canvas.webkitRequestFullScreen) {
+      canvas.webkitRequestFullScreen()
+    } else {
+      canvas.mozRequestFullScreen()
+    }
+  }

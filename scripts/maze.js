@@ -38,7 +38,7 @@ class Maze {
             canvas.height-60
         )
     }
-    drawNivel (nivel){
+    drawNivel(nivel){
         let a = 0
         let b = 0
         for(let y=0; y < nivel.length; y++){
